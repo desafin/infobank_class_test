@@ -17,3 +17,6 @@
 1. C++
 2. visual stdio 2022
 
+
+## resultimage
+![image](https://github.com/desafin/infobank_class_test/assets/131871057/d00fdfff-5518-4fde-a7bc-ea916f486c8a)
