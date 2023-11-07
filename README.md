@@ -13,6 +13,6 @@
 
 ## reqirement
 
-# C++
-# visual stdio 2022
+1. C++
+2. visual stdio 2022
 
