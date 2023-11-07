@@ -130,7 +130,7 @@ public:
     }
 
 
-    template <typename T>
+    template <typename T>//이름으로 소트한다
     static void bubbleSortChannelsByName(T channels[], int size) {
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
@@ -219,8 +219,10 @@ int main() {
 
     cout << "요구사항 1 끝 " << endl;
 
+
+    cout << "요구사항 2 " << endl;
  
-    // Create an array to hold all the channels
+    //배열에 부모클래스 전부 넣기
     ChannelBase allChannels[9];
 
     for (int i = 0; i < 3; i++) {
@@ -233,19 +235,21 @@ int main() {
         allChannels[7 + i] = tvRadioChannels[i];
     }
 
-    // Sort the combined array
+    //채널 번호로 소트
     ChannelManager::bubbleSortChannels(allChannels, 9);
-    // Display the sorted channels
+    //디스플레이
     cout << "Sorted Channels:" << endl;
     ChannelManager::displayChannels(allChannels, 9);
 
     
 
-    // Sort the combined array by channel name
+    //채널이름으로 소트
     ChannelManager::bubbleSortChannelsByName(allChannels, 9);
-    // Display the sorted channels by name
+    //디스플레이
     cout << "Sorted Channels by Name:" << endl;
     ChannelManager::displayChannels(allChannels, 9);
+
+    cout << "요구사항 2 끝" << endl;
 
 
 
