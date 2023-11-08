@@ -1,118 +1,129 @@
 ﻿#include <iostream>
 #include <string>
 
-
 using namespace std;
 
-
-
-class ChannelBase {//부모 클래스
+class ChannelBase {
 public:
     int channelId;
     string chanelName;
     string broadCastName;
+
+    ChannelBase() {
+        channelId = 0;
+        chanelName = "";
+        broadCastName = "";
+        cout << "ChannelBase 생성자 " << endl ;
+    }
+    ~ChannelBase() {
+        cout << "ChannelBase 소멸자 " << endl;
+    }
+
+    virtual void inputChannelInfo() {
+        cout << "Enter channelId: ";
+        cin >> channelId;
+        cout << "Enter chanelName: ";
+        cin >> chanelName;
+        cout << "Enter broadCastName: ";
+        cin >> broadCastName;
+    }
+
+    virtual void outputChannelInfo() {
+        cout << "channelId: " << channelId << " - chanelName: " << chanelName << " - broadCastName: " << broadCastName << endl;
+    }
 };
 
-
-
-class RadioChanel : public ChannelBase {//상속
+class RadioChanel : public ChannelBase {
 public:
-    // chanelId;  // 클래스 멤버 변수
-    //string chanelName;
-    //string broadCastName;
     int freqency;
 
-    void inputRadioChanelInfo() {
-        std::cout << "Enter channelId: ";
-        std::cin >> channelId;
-        std::cout << "Enter broadCastName: ";
-        std::cin >> broadCastName;
-        std::cout << "Enter freqency: ";
-        std::cin >> freqency;
+    RadioChanel() {
+        freqency = 0;
+        cout << "RadioChanel 생성자 " << endl;
+    }
+    ~RadioChanel() {
+        cout << "RadioChanel 소멸자 " << endl;
     }
 
-    void outputRadioChanelInfo() {
-        std::cout << "channelId: ";
-        std::cout << channelId;
-        std::cout << "chanelName: ";
-        std::cout << chanelName;
-        std::cout << "broadCastName: ";
-        std::cout << broadCastName;
-        std::cout << "freqency: ";
-        std::cout << freqency;
+    void inputChannelInfo() override {
+        ChannelBase::inputChannelInfo();
+        cout << "Enter freqency: ";
+        cin >> freqency;
     }
 
+    void outputChannelInfo() override {
+        ChannelBase::outputChannelInfo();
+        cout << "freqency: " << freqency << endl;
+    }
 };
 
-class TvChanel : public ChannelBase {//상속
+class TvChanel : public ChannelBase {
 public:
-    //int chanelId;  // 클래스 멤버 변수
-    //string chanelName;
-    //string broadCastName;
     int freqency;
     int chanelNumber;
     string broadCastType;
 
-    void inputTvChanelInfo() {
-        std::cout << "Enter chanelName: ";
-        std::cin >> chanelName;
-        std::cout << "Enter broadCastName: ";
-        std::cin >> broadCastName;
-        std::cout << "Enter freqency: ";
-        std::cin >> freqency;
-        std::cout << "Enter broadCastType: ";
-        std::cin >> broadCastType;
+
+    TvChanel() {
+        freqency = 0;
+        chanelNumber=0;
+        broadCastType = "";
+        cout << "TvChanel 생성자 " << endl;
+    }
+    ~TvChanel() {
+        cout << "TvChanel 소멸자 " << endl;
     }
 
-
-    void outputTvChanelInfo() {
-        std::cout << "chanelName: ";
-        std::cout << chanelName;
-        std::cout << "broadCastName: ";
-        std::cout << broadCastName;
-        std::cout << "freqency: ";
-        std::cout << freqency;
-        std::cout << "broadCastType: ";
-        std::cout << broadCastType;
+    void inputChannelInfo() override {
+        ChannelBase::inputChannelInfo();
+        cout << "Enter freqency: ";
+        cin >> freqency;
+        cout << "Enter chanelNumber: ";
+        cin >> chanelNumber;
+        cout << "Enter broadCastType: ";
+        cin >> broadCastType;
     }
 
+    void outputChannelInfo() override {
+        ChannelBase::outputChannelInfo();
+        cout << "freqency: " << freqency << " - chanelNumber: " << chanelNumber << " - broadCastType: " << broadCastType << endl;
+    }
 };
 
-
-
-class TVRadioChanel : public ChannelBase {//상속
+class TVRadioChanel : public ChannelBase {
+//추가할것이 없다
 public:
-    //int chanelId;  // 클래스 멤버 변수
-    //string chanelName;
-    //string broadCastName;
-
-    void inputRadioChanelInfo() {
-        std::cout << "Enter channelId: ";
-        std::cin >> channelId;
-        std::cout << "Enter chanelName: ";
-        std::cin >> chanelName;
-        std::cout << "Enter broadCastName: ";
-        std::cin >> broadCastName;
+    TVRadioChanel() {
+  
+        cout << "TVRadioChanel 생성자 " << endl;
     }
-
-
-    void outputRadioChanelInfo() {
-        std::cout << "channelId: ";
-        std::cout << channelId;
-        std::cout << "chanelName: ";
-        std::cout << chanelName;
-        std::cout << "broadCastName: ";
-        std::cout << broadCastName;
-     }
-
-
+    ~TVRadioChanel() {
+        cout << "TVRadioChanel 소멸자 " << endl;
+    }
 };
 
 class ChannelManager {
 public:
 
+
+
+
+
+    ChannelManager() {
+
+        cout << "ChannelManager 생성자 " << endl;
+    }
+    ~ChannelManager() {
+        cout << "ChannelManager 소멸자 " << endl;
+    }
+
+
+
+
+
+
     template <typename T>
-    static void bubbleSortChannels(T channels[], int size) {//소트
+    static void bubbleSortChannels(T channels[], int size) {
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
                 if (channels[j].channelId > channels[j + 1].channelId) {
@@ -123,14 +134,14 @@ public:
     }
 
     template <typename T>
-    static void displayChannels(T channels[], int size) {//출력
+    static void displayChannels(T channels[], int size) {
         for (int i = 0; i < size; i++) {
-            cout << "객체 " << i + 1 << " - channel ID: " << channels[i].channelId << " - Channel Name: " << channels[i].chanelName << " - Broadcast Name: " << channels[i].broadCastName << endl;
+            cout << "객체 " << i + 1 << " - ";
+            channels[i].outputChannelInfo();
         }
     }
 
-
-    template <typename T>//이름으로 소트한다
+    template <typename T>
     static void bubbleSortChannelsByName(T channels[], int size) {
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
@@ -140,17 +151,13 @@ public:
             }
         }
     }
-
-   
-
 };
-
-
-
-
 
 int main() {
     RadioChanel radioChannels[3];
+    TvChanel tvChannels[4];
+    TVRadioChanel tvRadioChannels[2];
+
 
     radioChannels[0].channelId = 3;
     radioChannels[0].chanelName = "A";
@@ -167,8 +174,7 @@ int main() {
     radioChannels[2].broadCastName = "MBC";
     radioChannels[2].freqency = 102;
 
-    TvChanel tvChannels[4];
-
+  
     tvChannels[0].channelId = 5;
     tvChannels[0].chanelName = "E";
     tvChannels[0].broadCastName = "KBS";
@@ -193,7 +199,6 @@ int main() {
     tvChannels[3].chanelNumber = 15;
     tvChannels[3].broadCastType = "케이블";
 
-    TVRadioChanel tvRadioChannels[2];
 
     tvRadioChannels[0].channelId = 3;
     tvRadioChannels[0].chanelName = "I";
@@ -217,12 +222,30 @@ int main() {
     cout << "Sorted TVRadio Channels:" << endl;
     ChannelManager::displayChannels(tvRadioChannels, 2);
 
+
+    cout << "요구사항 1시작" << endl;
+
+   
+
+    ChannelManager::bubbleSortChannels(radioChannels, 3);
+    cout << "Sorted Radio Channels:" << endl;
+    ChannelManager::displayChannels(radioChannels, 3);
+
+  
+
+    ChannelManager::bubbleSortChannels(tvChannels, 4);
+    cout << "Sorted TV Channels:" << endl;
+    ChannelManager::displayChannels(tvChannels, 4);
+
+
+    ChannelManager::bubbleSortChannels(tvRadioChannels, 2);
+    cout << "Sorted TVRadio Channels:" << endl;
+    ChannelManager::displayChannels(tvRadioChannels, 2);
+
     cout << "요구사항 1 끝 " << endl;
 
-
     cout << "요구사항 2 " << endl;
- 
-    //배열에 부모클래스 전부 넣기
+
     ChannelBase allChannels[9];
 
     for (int i = 0; i < 3; i++) {
@@ -235,27 +258,15 @@ int main() {
         allChannels[7 + i] = tvRadioChannels[i];
     }
 
-    //채널 번호로 소트
     ChannelManager::bubbleSortChannels(allChannels, 9);
-    //디스플레이
     cout << "Sorted Channels:" << endl;
     ChannelManager::displayChannels(allChannels, 9);
 
-    
-
-    //채널이름으로 소트
     ChannelManager::bubbleSortChannelsByName(allChannels, 9);
-    //디스플레이
     cout << "Sorted Channels by Name:" << endl;
     ChannelManager::displayChannels(allChannels, 9);
 
     cout << "요구사항 2 끝" << endl;
 
-
-
-
-
     return 0;
 }
-
-
